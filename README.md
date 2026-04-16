@@ -1,5 +1,5 @@
 # digital-image-processing
-Assignment 03
+Assignment 02
 # Poisson Image Blending 泊松图像融合
 
 基于 PyTorch 和 Gradio 实现的泊松图像融合（Poisson Image Editing）交互式应用。
