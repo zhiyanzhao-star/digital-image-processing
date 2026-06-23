@@ -145,8 +145,8 @@ def main():
     train_dataset = FacadesDataset(list_file='train_list.txt')
     val_dataset = FacadesDataset(list_file='val_list.txt')
 
-    train_loader = DataLoader(train_dataset, batch_size=100, shuffle=True, num_workers=4)
-    val_loader = DataLoader(val_dataset, batch_size=100, shuffle=False, num_workers=4)
+    train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True, num_workers=0)
+    val_loader = DataLoader(val_dataset, batch_size=16, shuffle=False, num_workers=0)
 
     # Initialize model, loss function, and optimizer
     model = FullyConvNetwork().to(device)
@@ -154,10 +154,10 @@ def main():
     optimizer = optim.Adam(model.parameters(), lr=0.001, betas=(0.5, 0.999))
 
     # Add a learning rate scheduler for decay
-    scheduler = StepLR(optimizer, step_size=200, gamma=0.2)
+    scheduler = StepLR(optimizer, step_size=50, gamma=0.2)
 
     # Training loop
-    num_epochs = 300
+    num_epochs = 100
     for epoch in range(num_epochs):
         train_one_epoch(model, train_loader, optimizer, criterion, device, epoch, num_epochs)
         validate(model, val_loader, criterion, device, epoch, num_epochs)
